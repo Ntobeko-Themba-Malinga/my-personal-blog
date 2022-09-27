@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=0.9">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <title>MyBlog</title>
+    </head>
+    <body>
+        <main class="container">
+            <section id="left-sidebar">
+                <div id="left-sidebar-header">
+                    <div id="profile-image">
+                        <img src="{% static 'img/profile (1).jpg' %}" alt="">
+                    </div>
+                    <div id="prief-intro">
+                        <p>Hi, my name is Ntobeko Malinga and I run PythonTuts+</p>
+                    </div>
+                    <div id="social-links">
+                        <a class="link-hover" href="#"><i class="fa-brands fa-2x fa-twitter"></i></a>
+                        <a class="link-hover" href="https://github.com/Ntobeko-Themba-Malinga" target="_blank"><i class="fa-brands fa-2x fa-github"></i></a>
+                        <a class="link-hover" href="#"><i class="fa-brands fa-2x fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div id="nav-links">
+                    <nav>
+                        <ul>
+                            {% if name == 'home' %}
+                                <li><a class="nav-link selected link-hover" href="{% url 'blog:post_list' %}"><i class="fa fa-home"></i> Home</a></li>
+                            {% else %}
+                                <li><a class="nav-link link-hover" href="{% url 'blog:post_list' %}"><i class="fa fa-home"></i> Home</a></li>
+                            {% endif %}
+
+                            {% if name == 'about' %}
+                                <li><a class="nav-link link-hover selected" href="{% url 'blog:about' %}"><i class="fa-solid fa-user"></i>  About me</a></li>
+                            {% else %}
+                                <li><a class="nav-link link-hover" href="{% url 'blog:about' %}"><i class="fa-solid fa-user"></i>  About me</a></li>
+                            {% endif %}
+                            <li><a class="nav-link link-hover" href="#"><i class="fa-solid fa-magnifying-glass"></i> Search</a></li>
+                            <li><a href="#" class="nav-link link-hover"><i class="fa-brands fa-space-awesome"></i> Projects</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </section>
+            <section id="right-sidebar">
+                <div id="right-sidebar-header">
+                    <h1>Welcome to PythonTuts+</h1>
+                    <form>
+                        <input type="text" placeholder="Enter your email...">
+                        <input type="submit" value="Subscribe">
+                    </form>
+                </div>
+                {% block content %}
+                {% endblock %}
+                
+                <div id="footer">
+                    <div id="footer-links">
+                        <ul>
+                            <li><a href="{% url 'blog:post_feed' %}"><i class="fa fa-rss"></i> Feed</a></li>
+                            <li><a href="{% url 'sitemap' %}"><i class="fa fa-sitemap"></i> Sitemap</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>
