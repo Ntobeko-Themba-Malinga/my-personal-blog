@@ -8,6 +8,19 @@
     padding-bottom: 0.4rem;
 }
 
+.notification {
+    background-color: #daa45c;
+    border: #333 solid 1px;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    width: 100%;
+    color: #fff;
+    margin: 0 auto;
+    width: 50%;
+    margin-top: 1rem;
+    text-align: center;
+}
+
 .container {
     display: flex;
     height: 100vh;
@@ -104,7 +117,7 @@
     margin-top: 1rem;
 }
 
-#right-sidebar #right-sidebar-header input[type='text'] {
+#right-sidebar #right-sidebar-header input[type='email'] {
     width: 20rem;
     height: 2rem;
     padding: 5px;

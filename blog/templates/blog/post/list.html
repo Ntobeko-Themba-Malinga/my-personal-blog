@@ -1,6 +1,10 @@
 {% extends '_base.html' %}
 {% load static %}
 
+{% block subscribe_form %}
+    {% include 'blog/includes/subscribe_form.html' %}
+{% endblock %}
+
 {% block content %}
     <div id="right-sidebar-article-list">
         {% for post in posts %}

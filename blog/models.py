@@ -56,3 +56,10 @@ class Post(models.Model):
                 self.slug
             ]
         )
+
+
+class Subscriber(models.Model):
+    email = models.EmailField()
+
+    def __str__(self):
+        return self.email

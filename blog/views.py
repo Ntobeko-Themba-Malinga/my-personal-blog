@@ -1,6 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.views.decorators.http import require_POST
+from django.contrib import messages
 from .models import Post
+from .forms import SubscriberForm
 
 
 def post_list(request):
@@ -14,12 +17,14 @@ def post_list(request):
         posts = paginator.page(paginator.num_pages)
     except PageNotAnInteger:
         posts = paginator.page(1)
+    subscribe_form = SubscriberForm()
     return render(
         request,
         'blog/post/list.html',
         {
             'posts': posts,
-            'name': 'home'
+            'name': 'home',
+            'subscribe_form': subscribe_form
         }
     )
 
@@ -33,21 +38,38 @@ def post_detail(request, year, month, day, post_slug):
         publish__day=day,
         slug=post_slug
     )
+    subscribe_form = SubscriberForm()
     return render(
         request,
         'blog/post/detail.html',
         {
             'post': post,
-            'name': 'detail'
+            'name': 'detail',
+            'subscribe_form': subscribe_form
         }
     )
 
 
 def about(request):
+    subscribe_form = SubscriberForm()
     return render(
         request,
         'blog/post/about.html',
         {
-            'name': 'about'
+            'name': 'about',
+            'subscribe_form': subscribe_form
         }
     )
+
+
+@require_POST
+def subscriber(request):
+    form = SubscriberForm(request.POST)
+
+    if form.is_valid():
+        form.save()
+        messages.success(
+            request,
+            "Successfully subscribed"
+        )
+    return redirect('blog:post_list')

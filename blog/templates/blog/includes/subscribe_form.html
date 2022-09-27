@@ -1,0 +1,7 @@
+<form action="{% url 'blog:subscribe' %}" method="post">
+    {% csrf_token %}
+    {% for field in subscribe_form %}
+        {{ field }}
+    {% endfor %}
+    <input type="submit" value="Subscribe">
+</form>

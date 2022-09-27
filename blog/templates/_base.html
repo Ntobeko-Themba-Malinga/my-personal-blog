@@ -48,11 +48,16 @@
             <section id="right-sidebar">
                 <div id="right-sidebar-header">
                     <h1>Welcome to PythonTuts+</h1>
-                    <form>
-                        <input type="text" placeholder="Enter your email...">
-                        <input type="submit" value="Subscribe">
-                    </form>
+                    {% block subscribe_form %}
+                    {% endblock %}
                 </div>
+                {% if messages %}
+                    <div class="notification">
+                        {% for message in messages %}
+                            <span>{{ message }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
                 {% block content %}
                 {% endblock %}
                 
