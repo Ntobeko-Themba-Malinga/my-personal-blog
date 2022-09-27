@@ -16,7 +16,7 @@
                     <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
                     <small>Published {{ post.publish|timesince }} ago - 8 comments</small>
                     <p>{{ post.body|truncatewords:30|linebreaks }}</p>
-                    <a href="{{ post.get_absolute_url }}">Read more</a>
+                    <a href="{{ post.get_absolute_url }}">Read more <i class="fa-solid fa-chevron-right"></i></a>
                 </div>
             </article>
         {% endfor %}
