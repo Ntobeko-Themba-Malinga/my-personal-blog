@@ -13,3 +13,7 @@ class SubscriberForm(forms.ModelForm):
                 }
             )
         }
+
+
+class SearchForm(forms.Form):
+    query = forms.CharField(widget=forms.TextInput(attrs={ 'placeholder': 'Search...' }))

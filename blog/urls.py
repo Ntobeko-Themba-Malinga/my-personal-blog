@@ -5,6 +5,12 @@ from . import views
 app_name =  'blog'
 
 urlpatterns = [
+    # search
+    path(
+        'search/',
+        views.search,
+        name='search'
+    ),
     # subscribe
     path(
         'subscribe/',

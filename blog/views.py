@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.views.decorators.http import require_POST
+from django.views.decorators.http import require_POST, require_GET
 from django.contrib import messages
 from .models import Post
-from .forms import SubscriberForm
+from .forms import SubscriberForm, SearchForm
 
 
 def post_list(request):
@@ -73,3 +73,30 @@ def subscriber(request):
             "Successfully subscribed"
         )
     return redirect('blog:post_list')
+
+
+@require_GET
+def search(request):
+    query = None
+    form = SearchForm()
+    results = []
+
+    if 'query' in request.GET:
+        form = SearchForm(request.GET)
+        if form.is_valid():
+            query = form.cleaned_data['query']
+            results = Post.published.filter(
+                title__contains=query
+            )
+    subscribe_form = SubscriberForm()
+    return render(
+        request,
+        'blog/post/search.html',
+        {
+            'query': query,
+            'results': results,
+            'form': form,
+            'subscribe_form': subscribe_form,
+            'name': 'search'
+        }
+    )

@@ -39,7 +39,12 @@
                             {% else %}
                                 <li><a class="nav-link link-hover" href="{% url 'blog:about' %}"><i class="fa-solid fa-user"></i>  About me</a></li>
                             {% endif %}
-                            <li><a class="nav-link link-hover" href="#"><i class="fa-solid fa-magnifying-glass"></i> Search</a></li>
+
+                            {% if name == 'search' %}
+                                <li><a class="nav-link selected link-hover" href="{% url 'blog:search' %}"><i class="fa-solid fa-magnifying-glass"></i> Search</a></li>
+                            {% else %}
+                                <li><a class="nav-link link-hover" href="{% url 'blog:search' %}"><i class="fa-solid fa-magnifying-glass"></i> Search</a></li>
+                            {% endif %}
                             <li><a href="#" class="nav-link link-hover"><i class="fa-brands fa-space-awesome"></i> Projects</a></li>
                         </ul>
                     </nav>

@@ -140,6 +140,10 @@
     padding: 3rem;
 }
 
+#right-sidebar #right-sidebar-article-list h2 {
+    margin-bottom: 3rem;
+}
+
 #right-sidebar #right-sidebar-article-list .article {
     display: flex;
     margin-bottom: 2rem;
@@ -184,6 +188,37 @@
 #right-sidebar #right-sidebar-article-list .article .article-text a {
     text-decoration: none;
     color: #daa45c;
+}
+
+/* Search form */
+#right-sidebar #search-form {
+    margin-top: 8rem;
+    margin-bottom: 14rem;
+    text-align: center;
+}
+
+#right-sidebar #search-form h1 {
+    font-size:xx-large;
+    margin-bottom: 1.5rem;
+}
+
+#right-sidebar #search-form input[type='text'] {
+    width: 20rem;
+    height: 2rem;
+    padding: 5px;
+    border-radius: 0.2rem;
+    border: rgb(143, 143, 143) solid 0.5px;
+}
+
+#right-sidebar #search-form button {
+    width: 6rem;
+    height: 2.7rem;
+    padding: 5px;
+    border-radius: 0.2rem;
+    border: none;
+    background-color: #daa45c;
+    color: #fff;
+    cursor: pointer;
 }
 
 #right-sidebar #pagination {

@@ -1,0 +1,39 @@
+{% extends "_base.html" %}
+{% load static %}
+
+{% block subscribe_form %}
+    {% include 'blog/includes/subscribe_form.html' %}
+{% endblock %}
+
+{% block content %}
+    {% if query %}
+        <div id="right-sidebar-article-list">
+            {% with results.count as total_results %}
+                <h2>{{ total_results }} Search result{{ total_results|pluralize }} for "{{ query }}"</h2>
+            {% endwith %}
+            {% for post in results %}
+                <article class="article">
+                    <div class="article-img">
+                        <img src="{% static 'img/1.jpeg' %}" alt="">
+                    </div>
+                    <div class="article-text">
+                        <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+                        <small>Published {{ post.publish|timesince }} ago - 8 comments</small>
+                        <p>{{ post.body|truncatewords:30|linebreaks }}</p>
+                        <a href="{{ post.get_absolute_url }}">Read more <i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div id="search-form">
+            <h1>Search for Topic</h1>
+            <form method="get">
+                {% for field in form %}
+                    {{ field }}
+                    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+                {% endfor %}
+            </form>
+        </div>
+    {% endif %}
+{% endblock %}
