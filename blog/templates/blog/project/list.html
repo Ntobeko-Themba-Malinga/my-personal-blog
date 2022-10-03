@@ -1,0 +1,21 @@
+{% extends "_base.html" %}
+
+{% block title %}Projects{% endblock %}
+
+{% block subscribe_form %}
+    {% include 'blog/includes/subscribe_form.html' %}
+{% endblock %}
+
+{% block content %}
+    <div id="projects">
+        {% for project in projects %}
+            <a href="{{ project.get_absolute_url }}">
+                <div class="project">
+                    <img src="{{ project.thumbnail.url }}" alt="">
+                    <p>{{ project.title }}</p>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+    {% include 'blog/includes/pagination.html' with page=projects %}
+{% endblock %}

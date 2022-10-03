@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=0.9">
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <title>MyBlog</title>
+        <title>MyBlog - {% block title %}{% endblock %}</title>
     </head>
     <body>
         <main class="container">
@@ -45,7 +45,12 @@
                             {% else %}
                                 <li><a class="nav-link link-hover" href="{% url 'blog:search' %}"><i class="fa-solid fa-magnifying-glass"></i> Search</a></li>
                             {% endif %}
-                            <li><a href="#" class="nav-link link-hover"><i class="fa-brands fa-space-awesome"></i> Projects</a></li>
+
+                            {% if name == 'project' %}
+                                <li><a href="{% url 'blog:project_list' %}" class="nav-link selected link-hover"><i class="fa-brands fa-space-awesome"></i> Projects</a></li>
+                            {% else %}
+                                <li><a href="{% url 'blog:project_list' %}" class="nav-link link-hover"><i class="fa-brands fa-space-awesome"></i> Projects</a></li>
+                            {% endif %}
                         </ul>
                     </nav>
                 </div>

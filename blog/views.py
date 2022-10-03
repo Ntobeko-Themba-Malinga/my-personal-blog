@@ -1,8 +1,9 @@
+from queue import Empty
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.decorators.http import require_POST, require_GET
 from django.contrib import messages
-from .models import Post
+from .models import Post, Project
 from .forms import SubscriberForm, SearchForm
 
 
@@ -98,5 +99,47 @@ def search(request):
             'form': form,
             'subscribe_form': subscribe_form,
             'name': 'search'
+        }
+    )
+
+
+def project_list(request):
+    project_list = Project.published.all()
+    paginator = Paginator(project_list, 9)
+    page = request.GET.get('page')
+
+    try:
+        projects = paginator.page(page)
+    except EmptyPage:
+        projects = paginator.page(paginator.num_pages)
+    except PageNotAnInteger:
+        projects = paginator.page(1)
+
+    subscribe_form = SubscriberForm()
+    return render(
+        request,
+        'blog/project/list.html',
+        {
+            'subscribe_form': subscribe_form,
+            'projects': projects,
+            'name': 'project'
+        }
+    )
+
+
+def project_detail(request, project_slug):
+    project = get_object_or_404(
+        Project,
+        status=Post.Status.PUBLISHED,
+        slug=project_slug
+    )
+    subscribe_form = SubscriberForm()
+    return render(
+        request,
+        'blog/project/detail.html',
+        {
+            'project': project,
+            'subscribe_form': subscribe_form,
+            'name': 'project'
         }
     )

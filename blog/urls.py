@@ -5,6 +5,18 @@ from . import views
 app_name =  'blog'
 
 urlpatterns = [
+    # project list
+    path(
+        'projects/',
+        views.project_list,
+        name='project_list'
+    ),
+    # project detail
+    path(
+        'projects/<slug:project_slug>/',
+        views.project_detail,
+        name='project_detail'
+    ),
     # search
     path(
         'search/',

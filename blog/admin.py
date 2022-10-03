@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Subscriber
+from .models import Post, Subscriber, Project
 
 
 @admin.register(Post)
@@ -13,3 +13,11 @@ class PostAdmin(admin.ModelAdmin):
 @admin.register(Subscriber)
 class SubscriberAdmin(admin.ModelAdmin):
     list_display = ['email']
+
+
+@admin.register(Project)
+class ProjectAdmin(admin.ModelAdmin):
+    list_display = ['thumbnail', 'title', 'author', 'status']
+    list_filter = ['author']
+    search_fields = ['title', 'body']
+    prepopulated_fields = { 'slug': ('title',) }
