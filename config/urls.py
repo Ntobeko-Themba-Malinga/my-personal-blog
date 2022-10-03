@@ -12,6 +12,7 @@ sitemaps = {
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('tinymce/',include('tinymce.urls')),
     path(
         'sitemap.xml/',
         sitemap,

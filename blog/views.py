@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.decorators.http import require_POST, require_GET
 from django.contrib import messages
-from .models import Post, Project
+from .models import Post, Project, About
 from .forms import SubscriberForm, SearchForm
 
 
@@ -53,12 +53,14 @@ def post_detail(request, year, month, day, post_slug):
 
 def about(request):
     subscribe_form = SubscriberForm()
+    about = About.objects.all().first()
     return render(
         request,
         'blog/post/about.html',
         {
             'name': 'about',
-            'subscribe_form': subscribe_form
+            'subscribe_form': subscribe_form,
+            'about': about
         }
     )
 

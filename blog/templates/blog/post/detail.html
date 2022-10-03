@@ -1,4 +1,5 @@
 {% extends '_base.html' %}
+{% load blog_tags %}
 
 {% block subscribe_form %}
     {% include 'blog/includes/subscribe_form.html' %}
@@ -10,7 +11,7 @@
         <div class="article-text">
             <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
             <small>Published {{ post.publish|timesince }} ago - 8 comments</small>
-            <p>{{ post.body|linebreaks }}</p>
+            <p>{{ post.body|safe_html }}</p>
         </div>
     </article>
 </div>

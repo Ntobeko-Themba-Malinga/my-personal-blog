@@ -3,6 +3,12 @@
     margin: 0;
 }
 
+code {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+}
+
 .selected {
     border-bottom: #daa45c solid 2px;
     padding-bottom: 0.4rem;

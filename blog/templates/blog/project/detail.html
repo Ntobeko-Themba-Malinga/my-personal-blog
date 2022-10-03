@@ -1,7 +1,9 @@
 {% extends '_base.html' %}
+{% load blog_tags %}
 
 {% block title %}Project{% endblock %}
 
 {% block subscribe_form %}
     {% include 'blog/includes/subscribe_form.html' %}
+    {{ project|safe_html }}
 {% endblock %}
