@@ -121,7 +121,7 @@ def search(request):
 
 def project_list(request):
     project_list = Project.published.all()
-    paginator = Paginator(project_list, 9)
+    paginator = Paginator(project_list, 6)
     page = request.GET.get('page')
 
     try:

@@ -278,7 +278,7 @@ code {
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 1rem;
     justify-content: space-around;
-    width: 100%;
+    width: 85%;
     margin-top: 3rem;
     padding: 1rem;
 }
