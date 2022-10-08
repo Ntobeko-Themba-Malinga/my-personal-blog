@@ -9,7 +9,6 @@ class PostAdmin(admin.ModelAdmin):
     list_filter = ['status', 'created', 'publish', 'author']
     search_fields = ['title', 'body']
     prepopulated_fields = { 'slug': ('title',) }
-   
 
 
 @admin.register(Subscriber)

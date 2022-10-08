@@ -3,6 +3,10 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.decorators.http import require_POST, require_GET
 from django.contrib import messages
+from django.db.models import Count
+
+from taggit.models import Tag
+
 from .models import Post, Project, About
 from .forms import SubscriberForm, SearchForm
 
@@ -40,13 +44,23 @@ def post_detail(request, year, month, day, post_slug):
         slug=post_slug
     )
     subscribe_form = SubscriberForm()
+
+    # similar posts
+    post_tags = post.tags.values_list('id', flat=True)
+    similar_posts = Post.published.filter(tags__in=post_tags).exclude(id=post.id)
+    similar_posts = similar_posts.annotate(
+        num_tags=Count('tags')
+    ).order_by('-num_tags', '-publish')[:4]
+
     return render(
         request,
         'blog/post/detail.html',
         {
             'post': post,
             'name': 'detail',
-            'subscribe_form': subscribe_form
+            'subscribe_form': subscribe_form,
+            'similar_posts': similar_posts,
+            'name': 'home'
         }
     )
 

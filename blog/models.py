@@ -1,8 +1,10 @@
+from email.policy import default
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 from django.contrib.auth.models import User
 from tinymce.models import HTMLField
+from taggit.managers import TaggableManager
 
 
 class PublishedManager(models.Manager):
@@ -33,10 +35,12 @@ class Post(models.Model):
         choices=Status.choices,
         default=Status.DRAFT
     )
+    thumbnail = models.ImageField(upload_to='article_thumbnails/', default='article_thumbnails/default.jpeg')
 
     # managers
     objects = models.Manager()
     published = PublishedManager()
+    tags = TaggableManager()
 
     class Meta:
         ordering = ['-publish']

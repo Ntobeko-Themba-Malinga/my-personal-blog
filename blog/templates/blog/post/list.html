@@ -11,7 +11,7 @@
         {% for post in posts %}
             <article class="article">
                 <div class="article-img">
-                    <img src="{% static 'img/1.jpeg' %}" alt="">
+                    <img src="{{ post.thumbnail.url }}" alt="{{ post.title }}">
                 </div>
                 <div class="article-text">
                     <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>

@@ -14,5 +14,20 @@
             <p>{{ post.body|safe_html }}</p>
         </div>
     </article>
+    <div id="similar-articles">
+        <h4>Similar posts:</h4>
+        <ul>
+            {% for post in similar_posts %}
+                <li>
+                    <a href="{{ post.get_absolute_url }}">
+                        <div class="similar-article">
+                            <img src="{{ post.thumbnail.url }}" alt="{{ post.title }}">
+                            <p>{{ post.title }}</p>
+                        </div>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 </div>
 {% endblock %}
