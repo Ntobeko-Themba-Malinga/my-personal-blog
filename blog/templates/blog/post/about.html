@@ -1,8 +1,14 @@
 {% extends '_base.html' %}
+{% load blog_tags %}
+
+{% block title %}About{% endblock %}
 
 {% block subscribe_form %}
     {% include 'blog/includes/subscribe_form.html' %}
 {% endblock %}
 
 {% block content %}
+    <div id="about">
+        {{ about.body|safe_html }}
+    </div>
 {% endblock %}

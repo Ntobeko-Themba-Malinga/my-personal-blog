@@ -4,6 +4,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.decorators.http import require_POST, require_GET
 from django.contrib import messages
 from django.db.models import Count
+from django.core.mail import send_mail
 
 from taggit.models import Tag
 
@@ -84,7 +85,18 @@ def subscriber(request):
     form = SubscriberForm(request.POST)
 
     if form.is_valid():
-        form.save()
+        subscriber = form.save(commit=False)
+        subscriber.save()
+
+        subject = 'PythonTuts+ Subscription'
+        message = f'Dear. {subscriber.email}\n\nThank you for subscribing to our newsletter\n\nRegards.\nPythonTuts+'
+
+        send_mail(
+            subject,
+            message,
+            'thembantobeko@gmail.com',
+            [subscriber.email]
+        )
         messages.success(
             request,
             "Successfully subscribed"

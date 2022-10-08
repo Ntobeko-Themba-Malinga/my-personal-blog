@@ -272,6 +272,12 @@ code {
     text-shadow: 1px 1px 1px lightgrey;
 }
 
+/* about */
+#right-sidebar #about {
+    margin-top: 3rem;
+    padding: 2rem;
+}
+
 /* Projects */
 #right-sidebar #projects {
     display: grid;
@@ -350,5 +356,9 @@ code {
 
     #right-sidebar #projects {
         grid-template-columns: 1fr;
+    }
+
+    #right-sidebar #project-detail {
+        margin-top: 6rem;
     }
 }

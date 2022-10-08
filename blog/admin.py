@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib import admin
-from .models import Post, Subscriber, Project
+from .models import Post, Subscriber, Project, About
 
 
 @admin.register(Post)
@@ -22,3 +22,8 @@ class ProjectAdmin(admin.ModelAdmin):
     list_filter = ['author']
     search_fields = ['title', 'body']
     prepopulated_fields = { 'slug': ('title',) }
+
+
+@admin.register(About)
+class AboutAdmin(admin.ModelAdmin):
+    list_display = ['title', 'created']
